@@ -1,0 +1,16 @@
+#ifndef RTOS_SEMAPHORE_H
+#define RTOS_SEMAPHORE_H
+
+#include "cmsis_os.h"
+
+extern osSemaphoreId motorCanTransmitSemaphoreHandle;
+extern osSemaphoreId motorCanReceiveSemaphoreHandle;
+extern osSemaphoreId canrefreshGimbalSemaphoreHandle;
+extern osSemaphoreId imurefreshGimbalSemaphoreHandle;
+extern osSemaphoreId motorCanHaveTransmitSemaphoreHandle;
+
+extern osSemaphoreId readMPU6050SemaphoreHandle;
+extern osSemaphoreId refreshMPU6050SemaphoreHandle;
+extern osSemaphoreId refreshIMUSemaphoreHandle;
+
+#endif

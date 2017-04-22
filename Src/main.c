@@ -53,7 +53,7 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "utilities_debug.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -205,6 +205,13 @@ void Error_Handler(void)
   /* User can add his own implementation to report the HAL error return state */
   while(1) 
   {
+		fw_printfln("ERROR HANDLE");
+ 		uint16_t delayTime = 1000;
+ 		for(uint16_t i = 0; i < delayTime; i++)
+ 		{
+ 			uint16_t a = 42000; //at 168MHz 42000 is ok
+ 			while(a--);
+ 		}
   }
   /* USER CODE END Error_Handler */ 
 }
