@@ -5,8 +5,8 @@
 
 #include "cmsis_os.h"
 
-#include "mpu6500_reg.h"
-#include "IST8310_reg.h"
+#include "drivers_imu_mpu6500_reg.h"
+#include "drivers_imu_IST8310_reg.h"
 
 #include "spi.h"
 

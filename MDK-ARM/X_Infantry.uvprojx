@@ -335,7 +335,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F427xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;  ../Drivers/STM32F4xx_HAL_Driver/Inc;  ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;  ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;  ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;  ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;  ../Middlewares/Third_Party/FreeRTOS/Source/include;  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;  ../Drivers/CMSIS/Include;  ..\Framework;  ..\Framework\utilities;  ..\Framework\rtos;  ..\Framework\drivers</IncludePath>
+              <IncludePath>../Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Drivers/CMSIS/Include;..\Framework;..\Framework\utilities;..\Framework\rtos;..\Framework\drivers;..\Framework\applications</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -760,6 +760,16 @@
               <FilePath>..\Framework\drivers\drivers_imu.c</FilePath>
             </File>
             <File>
+              <FileName>drivers_imu_mpu6500_reg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_imu_mpu6500_reg.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_imu_IST8310_reg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_imu_IST8310_reg.h</FilePath>
+            </File>
+            <File>
               <FileName>drivers_imu_low.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Framework\drivers\drivers_imu_low.h</FilePath>
@@ -768,6 +778,131 @@
               <FileName>drivers_imu_user.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Framework\drivers\drivers_imu_user.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_buzzer_low.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_buzzer_low.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_buzzer_user.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_buzzer_user.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_buzzer_notes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_buzzer_notes.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_buzzer_music.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_buzzer_music.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_buzzer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\drivers\drivers_buzzer.c</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_canmotor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\drivers\drivers_canmotor.c</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_canmotor_low.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_canmotor_low.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_canmotor_user.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_canmotor_user.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\drivers\drivers_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_uartrc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\drivers\drivers_uartrc.c</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_uartrc_low.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_uartrc_low.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_uartrc_user.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_uartrc_user.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_uartupper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\drivers\drivers_uartupper.c</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_uartupper_low.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_uartupper_low.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_uartupper_user.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_uartupper_user.h</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\drivers\drivers_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>drivers_flash.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\drivers\drivers_flash.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Framework/Applications</GroupName>
+          <Files>
+            <File>
+              <FileName>tasks_motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\applications\tasks_motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks_motor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\applications\tasks_motor.h</FilePath>
+            </File>
+            <File>
+              <FileName>application_pidfunc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\applications\application_pidfunc.c</FilePath>
+            </File>
+            <File>
+              <FileName>application_pidfunc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\applications\application_pidfunc.h</FilePath>
+            </File>
+            <File>
+              <FileName>application_motorcontrol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\applications\application_motorcontrol.c</FilePath>
+            </File>
+            <File>
+              <FileName>application_motorcontrol.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\applications\application_motorcontrol.h</FilePath>
             </File>
           </Files>
         </Group>

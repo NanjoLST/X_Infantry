@@ -81,24 +81,40 @@ typedef IOPoolDef(IOPoolName) IOPoolName##_t; \
 getIdDec(IOPoolName); \
 extern IOPoolName##_t IOPoolName;
 
-#define IOPoolDefine( \
+#define NaiveIOPoolDefine( \
 	IOPoolName, \
-	DataPoolInit, \
-	ReadPoolSize, \
-	ReadPoolMap, \
-	GetIdFunc, \
-	ReadPoolInit \
+	DataPoolInit \
 ) \
-Id_t IOPoolName##_readPoolMap[] = ReadPoolMap; \
-IOPoolName##_Data_t IOPoolName##_data[ReadPoolSize * 2 + 1] = DataPoolInit; \
-ReadPool_t IOPoolName##_readPool[ReadPoolSize] = ReadPoolInit; \
+Id_t IOPoolName##_readPoolMap[] = {0}; \
+IOPoolName##_Data_t IOPoolName##_data[1 * 2 + 1] = DataPoolInit; \
+ReadPool_t IOPoolName##_readPool[1] = {0, Empty, 1}; \
 IOPoolName##_t IOPoolName = { \
-	ReadPoolSize, \
+	1, \
 	IOPoolName##_readPoolMap, \
 	IOPoolName##_data, \
 	IOPoolName##_readPool, \
-	ReadPoolSize * 2 \
+	1 * 2 \
 }; \
-getIdDef(IOPoolName, GetIdFunc); \
+getIdDef(IOPoolName, 0);
+
+//#define IOPoolDefine( \
+//	IOPoolName, \
+//	DataPoolInit, \
+//	ReadPoolSize, \
+//	ReadPoolMap, \
+//	GetIdFunc, \
+//	ReadPoolInit \
+//) \
+//Id_t IOPoolName##_readPoolMap[] = ReadPoolMap; \
+//IOPoolName##_Data_t IOPoolName##_data[ReadPoolSize * 2 + 1] = DataPoolInit; \
+//ReadPool_t IOPoolName##_readPool[ReadPoolSize] = ReadPoolInit; \
+//IOPoolName##_t IOPoolName = { \
+//	ReadPoolSize, \
+//	IOPoolName##_readPoolMap, \
+//	IOPoolName##_data, \
+//	IOPoolName##_readPool, \
+//	ReadPoolSize * 2 \
+//}; \
+//getIdDef(IOPoolName, GetIdFunc);
 
 #endif

@@ -3,10 +3,16 @@
 
 //#include "framework_peripheraldefine.h"
 
+#define BUZZER_TIM htim3
+
 #define USER_TIM htim6
 
+#define RC_UART huart1
 #define DEBUG_UART huart3
 #define CTRL_UART huart3
+
+#define CMGMMOTOR_CAN hcan1
+#define AUXMOTOR_CAN hcan2
 
 //LED PIN
 #define GREEN_PIN GPIOF

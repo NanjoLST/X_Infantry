@@ -14,5 +14,8 @@ extern osThreadId readMPU6050TaskHandle;
 extern osThreadId printCtrlUartTaskHandle;
 
 extern osThreadId printIMUTaskHandle;
+extern osThreadId buzzerTaskHandle;
+
+//extern osThreadId testFlashTaskHandle;
 
 #endif

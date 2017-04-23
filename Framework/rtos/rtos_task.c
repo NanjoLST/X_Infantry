@@ -1,14 +1,15 @@
 #include "rtos_task.h"
 #include "rtos_init.h"
 
+#include "drivers_buzzer_low.h"
 #include "drivers_imu_low.h"
 //#include "utilities_debug.h"
 //#include "utilities_iopool.h"
 #include "drivers_led_low.h"
 //#include "tasks_remotecontrol.h"
 //#include "tasks_upper.h"
-//#include "drivers_canmotor_low.h"
-//#include "tasks_motor.h"
+#include "drivers_canmotor_low.h"
+#include "tasks_motor.h"
 //#include "drivers_mpu6050_low.h"
 //#include "tasks_mpu6050.h"
 
@@ -26,8 +27,15 @@ osThreadId readMPU6050TaskHandle;
 osThreadId printCtrlUartTaskHandle;
 
 osThreadId printIMUTaskHandle;
+osThreadId buzzerTaskHandle;
+
+//#include "drivers_flash.h"
+//osThreadId testFlashTaskHandle;
 
 void rtos_addThreads(){
+//	osThreadDef(testFlashTask, testFlashTask, osPriorityNormal, 0, 128);
+//  testFlashTaskHandle = osThreadCreate(osThread(testFlashTask), NULL);
+	
 	osThreadDef(ledGreenTask, ledGreenTask, osPriorityNormal, 0, 128);
   ledGreenTaskHandle = osThreadCreate(osThread(ledGreenTask), NULL);
 	osThreadDef(ledRedTask, ledRedTask, osPriorityNormal, 0, 128);
@@ -35,17 +43,19 @@ void rtos_addThreads(){
 	
 	osThreadDef(printIMUTask, printIMUTask, osPriorityNormal, 0, 128);
   printIMUTaskHandle = osThreadCreate(osThread(printIMUTask), NULL);
+	osThreadDef(buzzerTask, buzzerTask, osPriorityNormal, 0, 128);
+  buzzerTaskHandle = osThreadCreate(osThread(buzzerTask), NULL);
 	
 //	osThreadDef(printRcTask, printRcTask, osPriorityNormal, 0, 128);
 //  printRcTaskHandle = osThreadCreate(osThread(printRcTask), NULL);
 //	
 ////	osThreadDef(printMotorTask, printMotorTask, osPriorityAboveNormal, 0, 128);
 ////  printMotorTaskHandle = osThreadCreate(osThread(printMotorTask), NULL);
-//	osThreadDef(controlMotorTask, controlMotorTask, osPriorityAboveNormal, 0, 128);
-//  controlMotorTaskTaskHandle = osThreadCreate(osThread(controlMotorTask), NULL);
-//	
-//	osThreadDef(motorCanTransmitTask, motorCanTransmitTask, osPriorityRealtime, 0, 128);
-//  motorCanTransmitTaskHandle = osThreadCreate(osThread(motorCanTransmitTask), NULL);
+	osThreadDef(controlMotorTask, controlMotorTask, osPriorityAboveNormal, 0, 128);
+  controlMotorTaskTaskHandle = osThreadCreate(osThread(controlMotorTask), NULL);
+	
+	osThreadDef(motorCanTransmitTask, motorCanTransmitTask, osPriorityRealtime, 0, 128);
+  motorCanTransmitTaskHandle = osThreadCreate(osThread(motorCanTransmitTask), NULL);
 //	
 //	osThreadDef(printMPU6050Task, printMPU6050Task, osPriorityHigh, 0, 128);
 //  printMPU6050TaskHandle = osThreadCreate(osThread(printMPU6050Task), NULL);
