@@ -80,7 +80,9 @@ void setMotor(MotorId motorId, int16_t Intensity){
 		IOPool_getNextWrite(CMTxIOPool);
 		CMReady = 0;
 		CMFLIntensity = CMFRIntensity = CMBLIntensity = CMBRIntensity = 0;
-		if(osSemaphoreRelease(motorCanHaveTransmitSemaphoreHandle) == osErrorOS){}
+		if(osSemaphoreRelease(CMGMCanHaveTransmitSemaphoreHandle) == osErrorOS){
+			fw_Warning();
+		}
 	}
 	
 	if(GMReady == 0x3){
@@ -97,7 +99,9 @@ void setMotor(MotorId motorId, int16_t Intensity){
 		IOPool_getNextWrite(GMTxIOPool);
 		GMReady = 0;
 		GMYAWIntensity = GMPITCHIntensity = 0;
-		if(osSemaphoreRelease(motorCanHaveTransmitSemaphoreHandle) == osErrorOS){}
+		if(osSemaphoreRelease(CMGMCanHaveTransmitSemaphoreHandle) == osErrorOS){
+			fw_Warning();
+		}
 	}
 	
 	if(AM1Ready == 0xF){
@@ -114,7 +118,9 @@ void setMotor(MotorId motorId, int16_t Intensity){
 		IOPool_getNextWrite(AM1TxIOPool);
 		AM1Ready = 0;
 		AM1UDFLIntensity = AM1UDFRIntensity = AM1UDBLIntensity = AM1UDBRIntensity = 0;
-		if(osSemaphoreRelease(motorCanHaveTransmitSemaphoreHandle) == osErrorOS){}
+		if(osSemaphoreRelease(AMCanHaveTransmitSemaphoreHandle) == osErrorOS){
+			fw_Warning();
+		}
 	}
 	
 	if(AM2Ready == 0x3){
@@ -131,7 +137,7 @@ void setMotor(MotorId motorId, int16_t Intensity){
 		IOPool_getNextWrite(AM2TxIOPool);
 		AM2Ready = 0;
 		AM2PLATEIntensity = AM2GETBULLETIntensity = 0;
-		if(osSemaphoreRelease(motorCanHaveTransmitSemaphoreHandle) == osErrorOS){}
+		if(osSemaphoreRelease(AMCanHaveTransmitSemaphoreHandle) == osErrorOS){}
 	}
 		
 	

@@ -3,7 +3,7 @@
 #include "drivers_buzzer_notes.h"
 #include "drivers_buzzer_music.h"
 
-#include "framework_peripheraldefine.h"
+#include "peripheral_define.h"
 
 #include "cmsis_os.h"
 #include "tim.h"
@@ -43,16 +43,17 @@ __HAL_TIM_SET_COMPARE(&BUZZER_TIM, TIM_CHANNEL_1, 500000 / f);
 
 
 void playMusicWhenInit(void){
-//	HAL_TIM_PWM_Start(&BUZZER_TIM, TIM_CHANNEL_1);
-//	for(int i = 0; i < sizeof(SuperMario) / sizeof(MusicNote); i++){
-//			PLAYWHENINIT(SuperMario[i].note, SuperMario[i].time);
-//	}
-//	HAL_TIM_PWM_Stop(&BUZZER_TIM, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&BUZZER_TIM, TIM_CHANNEL_1);
-	for(int i = 0; i < sizeof(Intel) / sizeof(MusicNote); i++){
-			PLAYWHENINIT(Intel[i].note, Intel[i].time);
+	for(int i = 0; i < sizeof(SuperMario) / sizeof(MusicNote); i++){
+			PLAYWHENINIT(SuperMario[i].note, SuperMario[i].time);
 	}
 	HAL_TIM_PWM_Stop(&BUZZER_TIM, TIM_CHANNEL_1);
+	
+//	HAL_TIM_PWM_Start(&BUZZER_TIM, TIM_CHANNEL_1);
+//	for(int i = 0; i < sizeof(Intel) / sizeof(MusicNote); i++){
+//			PLAYWHENINIT(Intel[i].note, Intel[i].time);
+//	}
+//	HAL_TIM_PWM_Stop(&BUZZER_TIM, TIM_CHANNEL_1);
 	
 }
 

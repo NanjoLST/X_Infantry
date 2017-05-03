@@ -20,31 +20,50 @@
 #define AMPLATE_RXID 0x205u
 #define AMGETBULLET_RXID 0x206u
 
+#define ZGYRO_RXID 0x401u
+
 //TxID
 #define CM_TXID 0x200u
 #define GM_TXID 0x1FFu
 #define AM1_TXID 0x200u
 #define AM2_TXID 0x1FFu
 
+#define ZGYRO_TXID 0x404u
+
 //RxIOPool
-IOPoolDeclare(CMFLRxIOPool, CanRxMsgTypeDef);
-IOPoolDeclare(CMFRRxIOPool, CanRxMsgTypeDef);
-IOPoolDeclare(CMBLRxIOPool, CanRxMsgTypeDef);
-IOPoolDeclare(CMBRRxIOPool, CanRxMsgTypeDef);
+typedef struct{
+	uint16_t angle;
+	int16_t realIntensity;
+	int16_t giveIntensity;
+}Motor6623RxMsg_t;
+//6623--[0,1]Angle;[2,3]RealIntensity;[4,5]GiveIntensity;
+IOPoolDeclare(GMPITCHRxIOPool, Motor6623RxMsg_t);
+IOPoolDeclare(GMYAWRxIOPool, Motor6623RxMsg_t);
 
-IOPoolDeclare(GMPITCHRxIOPool, CanRxMsgTypeDef);
-IOPoolDeclare(GMYAWRxIOPool, CanRxMsgTypeDef);
+typedef struct{
+	uint16_t angle;
+	int16_t RotateSpeed;//RPM
+}Motor820RRxMsg_t;
+//820R--[0,1]Angle;[2,3]RotateSpeed;
+IOPoolDeclare(CMFLRxIOPool, Motor820RRxMsg_t);
+IOPoolDeclare(CMFRRxIOPool, Motor820RRxMsg_t);
+IOPoolDeclare(CMBLRxIOPool, Motor820RRxMsg_t);
+IOPoolDeclare(CMBRRxIOPool, Motor820RRxMsg_t);
 
-IOPoolDeclare(AMUDFLRxIOPool, CanRxMsgTypeDef);
-IOPoolDeclare(AMUDFRRxIOPool, CanRxMsgTypeDef);
-IOPoolDeclare(AMUDBLRxIOPool, CanRxMsgTypeDef);
-IOPoolDeclare(AMUDBRRxIOPool, CanRxMsgTypeDef);
-IOPoolDeclare(AMPLATERxIOPool, CanRxMsgTypeDef);
-IOPoolDeclare(AMGETBULLETRxIOPool, CanRxMsgTypeDef);
+//820R--[0,1]Angle;[2,3]RotateSpeed;
+IOPoolDeclare(AMUDFLRxIOPool, Motor820RRxMsg_t);
+IOPoolDeclare(AMUDFRRxIOPool, Motor820RRxMsg_t);
+IOPoolDeclare(AMUDBLRxIOPool, Motor820RRxMsg_t);
+IOPoolDeclare(AMUDBRRxIOPool, Motor820RRxMsg_t);
+IOPoolDeclare(AMPLATERxIOPool, Motor820RRxMsg_t);
+IOPoolDeclare(AMGETBULLETRxIOPool, Motor820RRxMsg_t);
+
 //TxIOPool
 IOPoolDeclare(CMTxIOPool, CanTxMsgTypeDef);
 IOPoolDeclare(GMTxIOPool, CanTxMsgTypeDef);
 IOPoolDeclare(AM1TxIOPool, CanTxMsgTypeDef);
 IOPoolDeclare(AM2TxIOPool, CanTxMsgTypeDef);
+
+void ZGyroReset(void);
 
 #endif

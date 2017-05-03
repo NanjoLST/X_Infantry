@@ -1,7 +1,7 @@
 #include "drivers_uartupper_low.h"
 #include "drivers_uartupper_user.h"
 
-#include "framework_peripheraldefine.h"
+#include "peripheral_define.h"
 
 #include "usart.h"
 

@@ -1,6 +1,6 @@
 #include "utilities_tim.h"
 
-#include "framework_peripheraldefine.h"
+#include "peripheral_define.h"
 #include "tim.h"
 
 uint64_t timeMicros = 0;

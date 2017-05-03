@@ -3,14 +3,24 @@
 
 #include "cmsis_os.h"
 
-extern osSemaphoreId motorCanTransmitSemaphoreHandle;
-extern osSemaphoreId motorCanReceiveSemaphoreHandle;
-extern osSemaphoreId canrefreshGimbalSemaphoreHandle;
-extern osSemaphoreId imurefreshGimbalSemaphoreHandle;
-extern osSemaphoreId motorCanHaveTransmitSemaphoreHandle;
 
-extern osSemaphoreId readMPU6050SemaphoreHandle;
-extern osSemaphoreId refreshMPU6050SemaphoreHandle;
+extern osSemaphoreId CMGMCanHaveTransmitSemaphoreHandle;
+extern osSemaphoreId AMCanHaveTransmitSemaphoreHandle;
+
+extern osSemaphoreId CMGMCanTransmitSemaphoreHandle;
+extern osSemaphoreId AMCanTransmitSemaphoreHandle;
+
+extern osSemaphoreId motorCanReceiveSemaphoreHandle;
+
+extern osSemaphoreId CMGMCanRefreshSemaphoreHandle;
+extern osSemaphoreId AMCanRefreshSemaphoreHandle;
+
+extern osSemaphoreId imurefreshGimbalSemaphoreHandle;
+
+
+//extern osSemaphoreId imuSpiTxRxCpltSemaphoreHandle;
+extern osSemaphoreId refreshMPU6500SemaphoreHandle;
 extern osSemaphoreId refreshIMUSemaphoreHandle;
+
 
 #endif

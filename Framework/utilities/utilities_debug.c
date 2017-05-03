@@ -3,7 +3,7 @@
 //调试时开启
 #ifdef _FW_DEBUG
 	#include "usart.h"
-	#include "framework_peripheraldefine.h"
+	#include "peripheral_define.h"
 	
 	#ifdef __GNUC__
 		#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)

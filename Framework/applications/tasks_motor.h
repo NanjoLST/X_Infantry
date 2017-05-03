@@ -1,7 +1,7 @@
 #ifndef TASKS_MOTOR_H
 #define TASKS_MOTOR_H
 
-//void printMotorTask(void const * argument);
-void controlMotorTask(void const * argument);
+void CMGMControlTask(void const * argument);
+void AMControlTask(void const * argument);
 
 #endif

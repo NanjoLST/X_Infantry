@@ -3,18 +3,22 @@
 
 #include "cmsis_os.h"
 
-extern osThreadId ledGTaskHandle;
-extern osThreadId ledRTaskHandle;
-extern osThreadId printRcTaskHandle;
-//extern osThreadId printMotorTaskHandle;
-extern osThreadId controlMotorTaskTaskHandle;
-extern osThreadId motorCanTransmitTaskHandle;
-extern osThreadId printMPU6050TaskHandle;
-extern osThreadId readMPU6050TaskHandle;
-extern osThreadId printCtrlUartTaskHandle;
-
-extern osThreadId printIMUTaskHandle;
+extern osThreadId ledGreenTaskHandle;
+extern osThreadId ledRedTaskHandle;
 extern osThreadId buzzerTaskHandle;
+//IMU
+extern osThreadId printIMUTaskHandle;
+//UART
+extern osThreadId printRcTaskHandle;
+extern osThreadId getCtrlUartTaskHandle;
+//Motor
+extern osThreadId CMGMControlTaskHandle;
+extern osThreadId AMControlTaskHandle;
+
+extern osThreadId CMGMCanTransmitTaskHandle;
+extern osThreadId AMCanTransmitTaskHandle;
+
+extern osThreadId sonarTaskHandle;
 
 //extern osThreadId testFlashTaskHandle;
 

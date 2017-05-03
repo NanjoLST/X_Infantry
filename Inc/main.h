@@ -51,8 +51,6 @@
 
 /* Private define ------------------------------------------------------------*/
 
-#define IST_INT_Pin GPIO_PIN_3
-#define IST_INT_GPIO_Port GPIOE
 #define IST_RST_Pin GPIO_PIN_2
 #define IST_RST_GPIO_Port GPIOE
 #define LASER_Pin GPIO_PIN_13
