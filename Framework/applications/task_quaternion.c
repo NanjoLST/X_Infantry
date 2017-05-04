@@ -1,7 +1,9 @@
 #include "stdint.h"
 
+#include "utilities_debug.h"
 #include "utilities_tim.h"
 #include "drivers_imu_low.h"
+#include "task_quaternion.h"
 extern IMUDataTypedef imu_data ;
 
 //初始化IMU数据
@@ -187,4 +189,17 @@ void updateQuaternion()
 			{
 				countPrint++;
 			}
+}
+
+void updateQuaternionTask(void const * argument){
+	while(1){
+//		static int countwhile = 0;
+//		if(countwhile > 500){
+//			countwhile = 0;
+//			fw_printfln("updateQuaternion");
+//		}else{
+//			countwhile++;
+//		}
+		updateQuaternion();
+	}
 }

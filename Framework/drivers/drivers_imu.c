@@ -1,4 +1,5 @@
 #include "drivers_imu_low.h"
+#include "drivers_imu_user.h"
 
 #include "utilities_debug.h"
 #include "utilities_tim.h"
@@ -10,7 +11,6 @@
 #include "rtos_semaphore.h"
 
 #include "spi.h"
-
 #include "tim.h"
 
 #define MPU6500_NSS_Low() HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET)
@@ -23,6 +23,8 @@ uint8_t datasc = 1;
 IMUDataTypedef imu_data = {0,0,0,0,0,0,0,0,0,0};
 
 IMUDataTypedef imu_data_offest = {0,0,0,0,0,0,0,0,0,0};
+
+NaiveIOPoolDefine(IMUIOPool, {0});
 
 //Write a register to MPU6500
 uint8_t MPU6500_Write_Reg(uint8_t const reg, uint8_t const data)
@@ -248,7 +250,6 @@ void IMU_Get_Data()
 	
 }
 
-float gYroXs, gYroYs, gYroZs;
 void printIMUTask(void const * argument){
 //	int16_t tmaxx, tmaxy, tmaxz;
 //	int16_t tminx, tminy, tminz;
@@ -300,10 +301,9 @@ void printIMUTask(void const * argument){
 		imu_data.my=mpu_buff[17]<<8 |mpu_buff[16];
 		imu_data.mz=mpu_buff[19]<<8 |mpu_buff[18];
 		
-		gYroXs = imu_data.gx / 32.8f;
-		gYroYs = imu_data.gy / 32.8f;
-		gYroZs = imu_data.gz / 32.8f;
-	
+		IOPool_pGetWriteData(IMUIOPool)->gYroXs = imu_data.gx / 32.8f;
+		IOPool_pGetWriteData(IMUIOPool)->gYroYs = imu_data.gy / 32.8f;
+		IOPool_pGetWriteData(IMUIOPool)->gYroYs = imu_data.gz / 32.8f;
 		
 		//osSemaphoreRelease(refreshIMUSemaphoreHandle);
 		

@@ -11,6 +11,7 @@
 #include "drivers_canmotor_low.h"
 #include "tasks_motor.h"
 #include "drivers_sonar_low.h"
+#include "task_quaternion.h"
 //#include "drivers_mpu6050_low.h"
 //#include "tasks_mpu6050.h"
 
@@ -34,6 +35,8 @@ osThreadId CMGMCanTransmitTaskHandle;
 osThreadId AMCanTransmitTaskHandle;
 
 osThreadId sonarTaskHandle;
+
+osThreadId updateQuaternionTaskHandle;
 
 //extern osThreadId testFlashTaskHandle;
 
@@ -59,18 +62,22 @@ void rtos_addThreads(){
 //	osThreadDef(printRcTask, printRcTask, osPriorityNormal, 0, 128);
 //  printRcTaskHandle = osThreadCreate(osThread(printRcTask), NULL);
 	
-	osThreadDef(getCtrlUartTask, getCtrlUartTask, osPriorityNormal, 0, 512);
+	osThreadDef(getCtrlUartTask, getCtrlUartTask, osPriorityNormal, 0, 256);
   getCtrlUartTaskHandle = osThreadCreate(osThread(getCtrlUartTask), NULL);
 
-	osThreadDef(CMGMC_Task, CMGMControlTask, osPriorityAboveNormal, 0, 640);
+	osThreadDef(CMGMC_Task, CMGMControlTask, osPriorityAboveNormal, 0, 512);
   CMGMControlTaskHandle = osThreadCreate(osThread(CMGMC_Task), NULL);
-	osThreadDef(AMC_Task, AMControlTask, osPriorityAboveNormal, 0, 640);
+	osThreadDef(AMC_Task, AMControlTask, osPriorityAboveNormal, 0, 512);
   AMControlTaskHandle = osThreadCreate(osThread(AMC_Task), NULL);
 	
 	osThreadDef(CMGMC_T_Task, CMGMCanTransmitTask, osPriorityRealtime, 0, 512);
   CMGMCanTransmitTaskHandle = osThreadCreate(osThread(CMGMC_T_Task), NULL);
 	osThreadDef(AMC_T_Task, AMCanTransmitTask, osPriorityRealtime, 0, 512);
   AMCanTransmitTaskHandle = osThreadCreate(osThread(AMC_T_Task), NULL);
+	
+	osThreadDef(updateQ_Task, updateQuaternionTask, osPriorityNormal, 0, 256);
+  updateQuaternionTaskHandle = osThreadCreate(osThread(updateQ_Task), NULL);
+	
 	
 //	osThreadDef(sonarTask, sonarTask, osPriorityNormal, 0, 128);
 //  sonarTaskHandle = osThreadCreate(osThread(sonarTask), NULL);
@@ -80,9 +87,11 @@ void rtos_addThreads(){
 //	fw_printfln("buzzerTaskHandle = %x", (uint16_t)buzzerTaskHandle);
 //	fw_printfln("printIMUTaskHandle = %x", (uint16_t)printIMUTaskHandle);
 //	fw_printfln("printRcTaskHandle = %x", (uint16_t)printRcTaskHandle);
-//	fw_printfln("printCtrlUartTaskHandle = %x", (uint16_t)printCtrlUartTaskHandle);
+//	fw_printfln("getCtrlUartTaskHandle = %x", (uint16_t)getCtrlUartTaskHandle);
 //	fw_printfln("CMGMControlTaskHandle = %x", (uint16_t)CMGMControlTaskHandle);
 //	fw_printfln("AMControlTaskHandle = %x", (uint16_t)AMControlTaskHandle);
 //	fw_printfln("CMGMCanTransmitTaskHandle = %x", (uint16_t)CMGMCanTransmitTaskHandle);
 //	fw_printfln("AMCanTransmitTaskHandle = %x", (uint16_t)AMCanTransmitTaskHandle);
+//	fw_printfln("updateQuaternionTaskHandle = %x", (uint16_t)updateQuaternionTaskHandle);
+	
 }

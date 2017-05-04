@@ -335,7 +335,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F427xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;              ../Drivers/STM32F4xx_HAL_Driver/Inc;              ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;              ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;              ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;              ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;              ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;              ../Middlewares/Third_Party/FreeRTOS/Source/include;              ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;              ../Drivers/CMSIS/Include;              ..\Framework;              ..\Framework\utilities;              ..\Framework\rtos;              ..\Framework\drivers;              ..\Framework\applications;              ..\Framework\peripheral</IncludePath>
+              <IncludePath>../Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy; ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F; ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc; ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc; ../Drivers/CMSIS/Device/ST/STM32F4xx/Include; ../Middlewares/Third_Party/FreeRTOS/Source/include; ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS; ../Drivers/CMSIS/Include; ..\Framework; ..\Framework\utilities; ..\Framework\rtos; ..\Framework\drivers; ..\Framework\applications; ..\Framework\peripheral; ..\Framework\config</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -960,16 +960,6 @@
               <FilePath>..\Framework\applications\application_pidfunc.h</FilePath>
             </File>
             <File>
-              <FileName>application_motorcontrol.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Framework\applications\application_motorcontrol.c</FilePath>
-            </File>
-            <File>
-              <FileName>application_motorcontrol.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Framework\applications\application_motorcontrol.h</FilePath>
-            </File>
-            <File>
               <FileName>tasks_upper.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Framework\applications\tasks_upper.c</FilePath>
@@ -980,14 +970,64 @@
               <FilePath>..\Framework\applications\tasks_upper.h</FilePath>
             </File>
             <File>
-              <FileName>application_quaternion.c</FileName>
+              <FileName>application_setmotor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Framework\applications\application_quaternion.c</FilePath>
+              <FilePath>..\Framework\applications\application_setmotor.c</FilePath>
             </File>
             <File>
-              <FileName>application_quaternion.h</FileName>
+              <FileName>application_setmotor.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Framework\applications\application_quaternion.h</FilePath>
+              <FilePath>..\Framework\applications\application_setmotor.h</FilePath>
+            </File>
+            <File>
+              <FileName>application_gimbalcontrol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\applications\application_gimbalcontrol.c</FilePath>
+            </File>
+            <File>
+              <FileName>application_gimbalcontrol.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\applications\application_gimbalcontrol.h</FilePath>
+            </File>
+            <File>
+              <FileName>application_chassiscontrol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\applications\application_chassiscontrol.c</FilePath>
+            </File>
+            <File>
+              <FileName>application_chassiscontrol.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\applications\application_chassiscontrol.h</FilePath>
+            </File>
+            <File>
+              <FileName>task_quaternion.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\applications\task_quaternion.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_quaternion.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\applications\task_quaternion.h</FilePath>
+            </File>
+            <File>
+              <FileName>application_auxmotorcontrol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Framework\applications\application_auxmotorcontrol.c</FilePath>
+            </File>
+            <File>
+              <FileName>application_auxmotorcontrol.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\applications\application_auxmotorcontrol.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Framework/Config</GroupName>
+          <Files>
+            <File>
+              <FileName>config_motor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Framework\config\config_motor.h</FilePath>
             </File>
           </Files>
         </Group>

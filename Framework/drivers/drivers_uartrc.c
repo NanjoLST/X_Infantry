@@ -40,3 +40,32 @@ void rcUartRxCpltCallback(){
 	IOPool_getNextWrite(rcUartIOPool);
 	HAL_UART_Receive_DMA(&RC_UART, RC_Data_ch, 18);
 }
+
+//typedef union
+//{
+//  struct
+//  { 
+//    struct
+//    { 
+//      uint16_t ch0:11;
+//      uint16_t ch1:11;
+//      uint16_t ch2:11;
+//      uint16_t ch3:11;
+//      uint8_t  s1:2;
+//      uint8_t  s2:2;
+//    }rc;
+//    struct
+//    {
+//      int16_t x;
+//      int16_t y;
+//      int16_t z;
+//      uint8_t press_l;
+//      uint8_t press_r;
+//    }mouse;
+//    struct
+//    {
+//      uint16_t v;
+//    }key;
+//  };
+//  uint8_t buf[18];
+//}RC_Ctl_t;

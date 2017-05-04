@@ -63,40 +63,6 @@ NaiveIOPoolDefine(AM1TxIOPool, DataPoolInit);
 NaiveIOPoolDefine(AM2TxIOPool, DataPoolInit);
 #undef DataPoolInit 
 
-//NaiveIOPoolDefine(motorCanRxIOPool, {0});
-
-//#define DataPoolInit \
-//	{ \
-//		{MOTORCM_ID, 0, CAN_ID_STD, CAN_RTR_DATA, 8, {0}}, \
-//		{MOTORGIMBAL_ID, 0, CAN_ID_STD, CAN_RTR_DATA, 8, {0}}, \
-//		{0, 0, CAN_ID_STD, CAN_RTR_DATA, 8, {0}} \
-//	}
-//NaiveIOPoolDefine(motorCanTxIOPool, DataPoolInit);
-//#undef DataPoolInit 
-
-///*****Begin define ioPool*****/
-//#define DataPoolInit \
-//	{ \
-//		{MOTORCM_ID, 0, CAN_ID_STD, CAN_RTR_DATA, 8, {0}}, \
-//		{MOTORCM_ID, 0, CAN_ID_STD, CAN_RTR_DATA, 8, {0}}, \
-//		{MOTORGIMBAL_ID, 0, CAN_ID_STD, CAN_RTR_DATA, 8, {0}}, \
-//		{MOTORGIMBAL_ID, 0, CAN_ID_STD, CAN_RTR_DATA, 8, {0}}, \
-//		{0, 0, CAN_ID_STD, CAN_RTR_DATA, 8, {0}} \
-//	}
-//#define ReadPoolSize 2
-//#define ReadPoolMap {MOTORCM_ID, MOTORGIMBAL_ID}
-//#define GetIdFunc (data.StdId)
-//#define ReadPoolInit {{0, Empty, 1}, {2, Empty, 3}}
-
-//IOPoolDefine(motorCanTxIOPool, DataPoolInit, ReadPoolSize, ReadPoolMap, GetIdFunc, ReadPoolInit);
-
-//#undef DataPoolInit 
-//#undef ReadPoolSize 
-//#undef ReadPoolMap
-//#undef GetIdFunc
-//#undef ReadPoolInit
-///*****End define ioPool*****/
-
 #define CanRxGetU16(canRxMsg, num) (((uint16_t)canRxMsg.Data[num * 2] << 8) + (uint16_t)canRxMsg.Data[num * 2 + 1])
 
 uint8_t isRcanStarted_CMGM = 0, isRcanStarted_AM = 0;
@@ -163,6 +129,7 @@ void ZGyroReset(void){
 //uint32_t flAngle = 0, frAngle = 0, blAngle = 0, brAngle = 0;
 //uint16_t flSpeed = 0, frSpeed = 0, blSpeed = 0, brSpeed = 0;
 float ZGyroModuleAngle = 0.0;
+
 void HAL_CAN_RxCpltCallback(CAN_HandleTypeDef* hcan){
 	//CanRxMsgTypeDef *temp = IOPool_pGetWriteData(motorCanRxIOPool);
 	if(hcan == &CMGMMOTOR_CAN){
@@ -170,21 +137,77 @@ void HAL_CAN_RxCpltCallback(CAN_HandleTypeDef* hcan){
 			case CMFL_RXID:
 				IOPool_pGetWriteData(CMFLRxIOPool)->angle = CanRxGetU16(CMGMCanRxMsg, 0);
 				IOPool_pGetWriteData(CMFLRxIOPool)->RotateSpeed = CanRxGetU16(CMGMCanRxMsg, 1);
+				//EC06
+				static float CMFLrealAngleLast = 0;
+				float CMFLrealAngleCurr = CanRxGetU16(CMGMCanRxMsg, 0) * 360 / 8192.0;
+				float CMFLrealAngleDiff;
+				if(CMFLrealAngleCurr - CMFLrealAngleLast > 180){
+					CMFLrealAngleDiff = CMFLrealAngleCurr - 360 - CMFLrealAngleLast;
+				}else if(CMFLrealAngleCurr - CMFLrealAngleLast < -180){
+					CMFLrealAngleDiff = CMFLrealAngleCurr + 360 - CMFLrealAngleLast;
+				}else{
+					CMFLrealAngleDiff = CMFLrealAngleCurr - CMFLrealAngleLast;
+				}
+				CMFLrealAngleLast = CMFLrealAngleCurr;
+				IOPool_pGetWriteData(CMFLRxIOPool)->RotateSpeed = CMFLrealAngleDiff * 1000 / 6.0;
+				//EC06
 				IOPool_getNextWrite(CMFLRxIOPool);
 				break;
 			case CMFR_RXID:
 				IOPool_pGetWriteData(CMFRRxIOPool)->angle = CanRxGetU16(CMGMCanRxMsg, 0);
 				IOPool_pGetWriteData(CMFRRxIOPool)->RotateSpeed = CanRxGetU16(CMGMCanRxMsg, 1);
+				//EC06
+				static float CMFRrealAngleLast = 0;
+				float CMFRrealAngleCurr = CanRxGetU16(CMGMCanRxMsg, 0) * 360 / 8192.0;
+				float CMFRrealAngleDiff;
+				if(CMFRrealAngleCurr - CMFRrealAngleLast > 180){
+					CMFRrealAngleDiff = CMFRrealAngleCurr - 360 - CMFRrealAngleLast;
+				}else if(CMFRrealAngleCurr - CMFRrealAngleLast < -180){
+					CMFRrealAngleDiff = CMFRrealAngleCurr + 360 - CMFRrealAngleLast;
+				}else{
+					CMFRrealAngleDiff = CMFRrealAngleCurr - CMFRrealAngleLast;
+				}
+				CMFRrealAngleLast = CMFRrealAngleCurr;
+				IOPool_pGetWriteData(CMFRRxIOPool)->RotateSpeed = CMFRrealAngleDiff * 1000 / 6.0;
+				//EC06
 				IOPool_getNextWrite(CMFRRxIOPool);
 				break;
 			case CMBL_RXID:
 				IOPool_pGetWriteData(CMBLRxIOPool)->angle = CanRxGetU16(CMGMCanRxMsg, 0);
 				IOPool_pGetWriteData(CMBLRxIOPool)->RotateSpeed = CanRxGetU16(CMGMCanRxMsg, 1);
+				//EC06
+				static float CMBLrealAngleLast = 0;
+				float CMBLrealAngleCurr = CanRxGetU16(CMGMCanRxMsg, 0) * 360 / 8192.0;
+				float CMBLrealAngleDiff;
+				if(CMBLrealAngleCurr - CMBLrealAngleLast > 180){
+					CMBLrealAngleDiff = CMBLrealAngleCurr - 360 - CMBLrealAngleLast;
+				}else if(CMBLrealAngleCurr - CMBLrealAngleLast < -180){
+					CMBLrealAngleDiff = CMBLrealAngleCurr + 360 - CMBLrealAngleLast;
+				}else{
+					CMBLrealAngleDiff = CMBLrealAngleCurr - CMBLrealAngleLast;
+				}
+				CMBLrealAngleLast = CMBLrealAngleCurr;
+				IOPool_pGetWriteData(CMBLRxIOPool)->RotateSpeed = CMBLrealAngleDiff * 1000 / 6.0;
+				//EC06
 				IOPool_getNextWrite(CMBLRxIOPool);
 				break;
 			case CMBR_RXID:
 				IOPool_pGetWriteData(CMBRRxIOPool)->angle = CanRxGetU16(CMGMCanRxMsg, 0);
 				IOPool_pGetWriteData(CMBRRxIOPool)->RotateSpeed = CanRxGetU16(CMGMCanRxMsg, 1);
+				//EC06
+				static float CMBRrealAngleLast = 0;
+				float CMBRrealAngleCurr = CanRxGetU16(CMGMCanRxMsg, 0) * 360 / 8192.0;
+				float CMBRrealAngleDiff;
+				if(CMBRrealAngleCurr - CMBRrealAngleLast > 180){
+					CMBRrealAngleDiff = CMBRrealAngleCurr - 360 - CMBRrealAngleLast;
+				}else if(CMBRrealAngleCurr - CMBRrealAngleLast < -180){
+					CMBRrealAngleDiff = CMBRrealAngleCurr + 360 - CMBRrealAngleLast;
+				}else{
+					CMBRrealAngleDiff = CMBRrealAngleCurr - CMBRrealAngleLast;
+				}
+				CMBRrealAngleLast = CMBRrealAngleCurr;
+				IOPool_pGetWriteData(CMBRRxIOPool)->RotateSpeed = CMBRrealAngleDiff * 1000 / 6.0;
+				//EC06
 				IOPool_getNextWrite(CMBRRxIOPool);
 				break;
 			case GMYAW_RXID:
